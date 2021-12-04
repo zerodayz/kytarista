@@ -34,6 +34,15 @@ class Guitar:
             combined += sound
         return combined
 
+    def pick(self, chords):
+        combined = AudioSegment.empty()
+
+        for ch in chords.split():
+            audio_file = self.sound_dir + '/pick_' + ch + ".wav"
+            sound = AudioSegment.from_file(audio_file, format="wav")
+            combined += sound
+        return combined
+
     def play(self, audio):
         audio_out = effects.strip_silence(audio, silence_len=1,
                                           silence_thresh=-50, padding=0)

@@ -8,8 +8,9 @@ def main():
     guitar.initialize()
     seq1 = guitar.sequence('a a a a')
     seq2 = guitar.sequence('d d d d')
-    combined = guitar.overlay(seq1, seq2, gain_during_overlay=-8)
-    guitar.play(seq1 + seq2 + combined)
+    sound = guitar.pick('c d e f g a b c1')
+    combined = guitar.overlay(seq1, sound, gain_during_overlay=-8)
+    guitar.play(combined)
 
 
 if __name__ == '__main__':
