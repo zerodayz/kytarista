@@ -1,6 +1,13 @@
 # kytarista
 Programming guitar music
 
+
+## Import Guitar package
+
+```python
+from guitar import Guitar
+```
+
 ## Initialize the Guitar
 
 ```python
