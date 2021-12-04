@@ -1,6 +1,19 @@
 # kytarista
 Programming guitar music
 
+## Requirements
+
+### MacOS
+
+```bash
+brew install ffmpeg
+```
+
+### Linux
+
+```bash
+apt-get install ffmpeg libavcodec-extra
+```
 
 ## Import Guitar package
 

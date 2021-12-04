@@ -1,8 +1,9 @@
 import os
 import logging
 
-# Run 'pip3 install PyObjC' to use playsound more effectively.
-from playsound import playsound
+from pydub import AudioSegment
+from pydub import effects
+from pydub.playback import play
 
 LOG = logging.getLogger(__name__)
 
@@ -19,15 +20,25 @@ class Guitar:
             LOG.critical(f'Directory "{self.sound_dir}" not found!')
             exit(1)
 
-    def play(self, chord):
-        LOG.info(f'Playing "{chord}"')
+    def chord(self, chord):
         audio_file = self.sound_dir + '/' + chord + ".wav"
-        playsound(audio_file)
+        sound = AudioSegment.from_file(audio_file, format="wav")
+        return sound
 
     def sequence(self, chords):
-        LOG.info(f'Playing "{chords}"')
+        combined = AudioSegment.empty()
+
         for ch in chords.split():
             audio_file = self.sound_dir + '/' + ch + ".wav"
-            playsound(audio_file)
+            sound = AudioSegment.from_file(audio_file, format="wav")
+            combined += sound
+        return combined
 
+    def play(self, audio):
+        audio_out = effects.strip_silence(audio, silence_len=1,
+                                          silence_thresh=-50, padding=0)
+        play(audio_out)
 
+    def overlay(self, first, second, **kwargs):
+        combined = first.overlay(second, **kwargs)
+        return combined
