@@ -1,5 +1,6 @@
 import logging
 import sys
+
 import constants as consts
 
 LOG = logging.getLogger(__name__)
