@@ -18,7 +18,7 @@ apt-get install ffmpeg libavcodec-extra
 ## Import Guitar package
 
 ```python
-from guitar import Guitar
+from kytarista import Guitar
 ```
 
 ## Initialize the Guitar
